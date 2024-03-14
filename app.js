@@ -6,7 +6,7 @@ app.use(express.json())
 // app.use(express.urlencoded({ extended: true }))
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://login-frontend-smor.onrender.com/',
     methods: ['GET', 'POST'],
     credentials: true
 }));
@@ -19,7 +19,7 @@ app.post("/", async (req, res) => {
 
     const check = await collection.findOne({
         email: email,
-        password: password 
+        password: password
     })
 
     if (check) {
@@ -46,17 +46,17 @@ app.post("/signup", async (req, res) => {
         email: email
     })
 
-    if (check){
+    if (check) {
         res.json("exist")
     }
     else {
         const helper = await collection.findOne({
             email: email,
         })
-        if(helper){
+        if (helper) {
             alert("email already in use")
         }
-        else{
+        else {
             await collection.insertMany([data])
             res.json("notexist")
         }
@@ -65,7 +65,7 @@ app.post("/signup", async (req, res) => {
 })
 const port = process.env.PORT || 5000; // Default to 3000 if PORT is not set in .env
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on port ${port}`);
 });
 
 
