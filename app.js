@@ -11,9 +11,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.get('/', (req, res) => {
-    res.send("Deepak Bhagat");
-});
+
 app.post("/", async (req, res) => {
     const { email, password } = req.body
 
