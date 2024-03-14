@@ -6,10 +6,11 @@ app.use(express.json())
 // app.use(express.urlencoded({ extended: true }))
 
 app.use(cors({
-    origin: 'https://login-frontend-smor.onrender.com/',
+    origin: ['https://login-frontend-smor.onrender.com', 'https://login-frontend-smor.onrender.com/signup'],
     methods: ['GET', 'POST'],
     credentials: true
 }));
+
 app.get('/', (req, res) => {
     res.send("Deepak Bhagat");
 });
