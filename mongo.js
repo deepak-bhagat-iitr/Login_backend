@@ -1,24 +1,27 @@
-const mongoose = require("mongoose")
-mongoose.connect("mongodb+srv://deepak988088:G869xbCJuZkfrtqh@cluster0.p56djlr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/test")
-    .then(() => {
-        console.log("mongodb connected");
-    })
-    .catch(() => {
-        console.log('failed');
-    })
+const mongoose = require("mongoose");
+require('dotenv').config(); // To load environment variables
 
+const MONGODB_URI = process.env.MONGODB_URI; // Assuming you stored your MongoDB URI in an environment variable
+
+mongoose.connect(MONGODB_URI)
+.then(() => {
+  console.log("MongoDB connected");
+})
+.catch((error) => {
+  console.error("MongoDB connection error:", error);
+});
 
 const newSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    }
-})
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+});
 
-const collection = mongoose.model("infos", newSchema)
+const collection = mongoose.model("infos", newSchema);
 
-module.exports = collection
+module.exports = collection;
